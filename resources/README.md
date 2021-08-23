@@ -1,0 +1,1 @@
+UI/UX code testing project that incdlues CSS libraries, localstorage, http request and the Star Wars Api

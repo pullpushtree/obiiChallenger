@@ -1,5 +1,7 @@
 {
   "name": "obiiChallenger",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
