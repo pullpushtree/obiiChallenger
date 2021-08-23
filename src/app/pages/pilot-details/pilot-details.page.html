@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <div *ngFor="let pilotSpecs of pilotDetailSpecs; let i = index">
+
+      <h2 class="title" [ngClass]="force=='Darkness'?'dark' : force == 'Light' ? 'light' : '' " >{{pilotSpecs.name | uppercase}}</h2>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="container">
+
+  
+  <div class="section" *ngFor="let pilotSpecs of pilotDetailSpecs; let i = index">
+    <div class="card" >
+      <div class="card-image"></div>
+      <div class="card-text">      
+       
+         <ion-grid>
+          <ion-row class="ship-title"> 
+            <ul >              
+              <!-- <p class="sub">{{pilotSpecs.homeworld | uppercase}} </p> -->
+            </ul>
+          </ion-row>     
+          <ion-row>
+            <ion-col>
+              <ul>
+                <p>Hair Color: </p>{{pilotSpecs.hair_color | titlecase}}     
+              </ul>            
+            </ion-col>
+            <ion-col>
+              <ul>
+                <p>Skin Color: </p>{{pilotSpecs.skin_color | titlecase}}     
+              </ul> 
+            </ion-col>          
+          </ion-row>            
+          <ion-row>
+            <ion-col>
+              <ul>
+                <p>Eye Color: </p>{{pilotSpecs.eye_color | titlecase}}    
+              </ul>
+            </ion-col>
+            <ion-col>
+              <ul>
+                <p>Birty Year: </p>{{pilotSpecs.birth_year }}     
+              </ul>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              
+            </ion-col>
+            <ion-col>
+              <ul>
+                <!-- <p>Species: </p>{{pilotSpecs.species | titlecase}}     -->
+              </ul>
+            </ion-col>
+          </ion-row> 
+          <ion-row>
+            <ion-col>
+              <ul>
+                <!-- <p>Vichles: </p>{{pilotSpecs.vichles | titlecase}}     -->
+              </ul>
+            </ion-col>
+            <ion-col>
+              <ul>
+                <!-- <p>Starship: </p>{{pilotSpecs.starships | titlecase}}     -->
+              </ul>
+            </ion-col>
+          </ion-row> 
+        </ion-grid>
+      </div>
+      <div class="card-stats">
+        <div class="stat">
+          <div class="value">{{pilotSpecs.height}}</div>
+          <div class="type">Height</div>        
+        </div>
+        <div class="stat border">        
+          <div class="value">{{pilotSpecs.mass}}</div>
+          <div class="type">Mass</div>
+        </div>
+        <div class="stat">
+          <div class="value">{{pilotSpecs.gender | titlecase}}</div>
+          <div class="type">Gender</div>
+        </div>
+      </div> 
+    </div>
+  </div>    
+</ion-content>
