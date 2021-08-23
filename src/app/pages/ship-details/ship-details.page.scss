@@ -1,0 +1,117 @@
+.title {
+    color: rgb(255, 189, 7);
+    font-family: "Poller One";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3rem;    
+    text-align-last: center;  
+    margin-left: -65px;  
+ }
+
+
+
+.section {     
+    display: flex;
+    flex-direction: row;    
+    width: 100%;    
+    flex-flow: row wrap;
+    align-self: left;
+    justify-content: center; 
+    
+
+}
+
+.ship-title{
+    align-self: left;
+    justify-content: center; 
+}
+.pilots {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.card {
+    display: inline-grid;
+    grid-template-columns: 40vw;
+    grid-template-rows: 400px auto 80px;
+    grid-template-areas: "image" "text" "stats";
+
+    border-radius: 18px;
+    //background: rgba(255, 255, 255, 0.055);
+
+    background: #17141d;
+    box-shadow: -1rem 0 3rem #000;
+
+    backdrop-filter: blur(6px);
+    //filter: blur(3px);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    font-family: 'Poller One';
+    text-align: center;
+    
+
+    transition: 0.5s ease;
+    //cursor: pointer;
+    margin:30px;
+    
+  }
+
+  .card-image {
+    grid-area: image;
+    background: url("../../../assets/images/background.jpg");
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-size: cover;
+  }
+
+
+  .card-text {
+    grid-area: text;
+    margin: 25px;
+  }
+
+  .card-text .sub {
+    color: rgb(255, 189, 7);
+    font-size:15px;
+    transform: to-upper-case($string: "");
+  }
+  .card-text p {
+    color: grey;
+    font-size:17px;
+    font-weight: 300;
+    align-self: center;
+    justify-content: center; 
+    
+  }
+  .card-text h2 {
+    margin-top:0px;
+    font-size:30px;
+  }
+
+
+  .card-stats {
+    grid-area: stats; 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgb(255, 7, 110);
+  }
+
+  .card-stats .stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    padding:10px;
+  }
+
+  .card-pilot:hover {
+    background: linear-gradient(90deg,#ff8a00,#e52e71);
+    text-shadow: none;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+

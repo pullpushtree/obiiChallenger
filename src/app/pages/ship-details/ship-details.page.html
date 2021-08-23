@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <h2 class="title" [ngClass]="force=='Darkness'?'dark' : force == 'Light' ? 'light' : '' " >SPACESHIPS DETAILS</h2>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div class="section" *ngFor="let shipSpecs of shipDetailSpecs; let i = index">
+    <div class="card">
+      <div class="card-image"></div>
+      <div class="card-text">      
+        <ion-grid>
+          <ion-row class="ship-title"> 
+            <ul >
+              <h2>{{shipSpecs?.name | uppercase}}</h2>
+              <p class="sub">{{shipSpecs?.model | uppercase}} </p>
+            </ul>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ul>
+                <p>Starship Class: </p>{{shipSpecs?.starship_class | titlecase}}    
+              </ul>          
+            </ion-col>
+            <ion-col>
+              <ul>
+                <p> Max Speed: </p>{{shipSpecs?.max_atmosphering_speed}}  
+              </ul>            
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ul>
+                <p>Consumables: </p>{{shipSpecs?.consumables}}     
+              </ul>            
+            </ion-col>
+            <ion-col>
+              <ul>
+                <p>Cost: </p>{{shipSpecs?.cost_in_credits | currency:"USD"  }}     
+              </ul> 
+            </ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ul>
+                <p>Hyperdrive Drive Rating: </p>{{shipSpecs?.hyperdrive_rating}}    
+              </ul>
+            </ion-col>
+            <ion-col>
+              <ul>
+                <p>Length: </p>{{shipSpecs?.length}}     
+              </ul>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ul>
+                <p>Manufacturer: </p>{{shipSpecs?.manufacturer | titlecase}}    
+              </ul>
+            </ion-col>
+            <ion-col>
+              <ul *ngIf="shipSpecs.pilots.length > 0">
+                <p>Pilots: </p>
+                <ul class="pilots card-pilot" *ngFor="let pilot of shipSpecs.pilots; let i = index"
+                (click)="goToPilotDetails(pilot)"
+                >
+                {{shipSpecs?.pilots[i].name }}
+                </ul>
+              </ul>
+          
+              <ul *ngIf="shipSpecs.pilots.length == 0 ">        
+                <p>Pilots:</p> No Pilots
+              </ul> 
+            </ion-col>
+          </ion-row> 
+
+          <ion-row>           
+            <ion-col>
+              <ul *ngIf="shipSpecs.films.length > 0">
+                <p>Films: </p>
+                <ul class="pilots card-pilot" *ngFor="let films of shipSpecs.films; let i = index"                
+                >
+                <!-- {{films?.films[i].title }} -->
+                {{films | json }}
+                </ul>
+              </ul>
+          
+              <ul *ngIf="shipSpecs.pilots.length == 0 ">        
+                <p>Film:</p> No Films
+              </ul> 
+            </ion-col>
+          </ion-row> 
+
+
+        </ion-grid>
+      </div>
+      
+      <div class="card-stats">
+        <div class="stat">
+          <div class="value">{{shipSpecs?.crew}}</div>
+          <div class="type">Crew</div>        
+        </div>
+        <div class="stat border">        
+          <div class="value">{{shipSpecs?.passengers}}</div>
+          <div class="type">Passengers</div>
+        </div>
+        <div class="stat">
+          <div class="value">{{shipSpecs?.cargo_capacity | number: '2.'}}</div>
+          <div class="type">Cargo Capacity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</ion-content>
