@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SpaceService, } from 'src/app/services/space.service';
 import { DataService, } from 'src/app/services/data.service';
-import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-ships',
@@ -15,39 +15,38 @@ export class ShipsPage implements OnInit {
   accessToken: any;
   force: string = 'Dark';
   downloadStatus: number = 0;  
+  unsplashImages: any;
+  shipImages: any;
 
   constructor( 
     private spaceService: SpaceService, 
     private data: DataService,
-    private storage: Storage,
+    private storageLocal: StorageService,
     private router: Router
     ) { 
       document.body.setAttribute('color-theme', 'dark')
     }
 
   async ngOnInit() {
-    
     this.spaceService.loadShips().subscribe(res => {      
-      this.results = res.results;       
+      this.results = res.results;
     })
 
-    // TO TWITCH SERVICE GET AUTH TOKEN ACCESS 
-    // try {
+    //Initialize Unsplash API request 
+    this.data.unsplashAPIRequest();
+  }
 
-    //   this.data.getAccessToken().subscribe(res => {
-    //     this.accessToken = res 
-    //     console.log("twitch ACCESS TOKEN VALUE  : ", res )   
-
-    //   })
-    // } catch(err) {
-    //   console.log("Twitch ERROR  ", err)
-    // }
+  ionViewWillEnter(){
+    
+    this.storageLocal.get('spaceship').then(res => {
+      this.shipImages = res
+    })  
   }
 
   async goToSelectedShip( item, id: string ){
-    await this.storage.create();
-    await this.storage.set('selectedShipId', id)
-    await this.storage.set('selectedShipObj', item)
+    await this.storageLocal.init();
+    await this.storageLocal.set('selectedShipId', id)
+    await this.storageLocal.set('selectedShipObj', item)
     await this.router.navigate(['/ship-details/', id])
   }
 }
