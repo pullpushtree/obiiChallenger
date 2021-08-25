@@ -13,23 +13,25 @@
           </header>
           
           <div class="card-officer">
-            <a class="officer-avatar" href="#">
-              <img src="../..//../assets/images/ship.jpeg" />
+            <a class="officer-avatar" >              
+              <img [src]="shipImages[i]" />
             </a>
             <svg class="half-circle" viewBox="0 0 106 57">
               <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
             </svg>
-            
             <div class="officer-name">
               <div class="officer-name-prefix">Crew {{item?.crew}}</div>
-              
             </div>
           </div>
           <div class="tags">
-            
             <a >Speed {{item?.max_atmosphering_speed }} </a>
             <a >Capacity {{item?.cargo_capacity | number: '2.'}}</a>
-            <a >Cost {{item?.cost_in_credits  | currency:"USD" }} </a>
+            <a *ngIf="item?.cost_in_credits == 'unknown' ">
+              Cost {{item?.cost_in_credits | titlecase }} 
+            </a>
+            <a *ngIf="item?.cost_in_credits !==  'unknown' ">            
+              Cost {{item?.cost_in_credits | currency : 'USD': '$'}} 
+            </a>
           </div>
           
         </article>    

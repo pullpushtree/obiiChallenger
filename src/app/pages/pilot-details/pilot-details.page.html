@@ -13,11 +13,12 @@
 </ion-header>
 
 <ion-content padding class="container">
-
-  
   <div class="section" *ngFor="let pilotSpecs of pilotDetailSpecs; let i = index">
     <div class="card" >
-      <div class="card-image"></div>
+      <div class="unsplashImage">
+        <img [src]="jediImages">
+      </div>
+
       <div class="card-text">      
        
          <ion-grid>
