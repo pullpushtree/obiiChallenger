@@ -51,14 +51,24 @@ ion-content {
     ul {
         padding: 0px;
     }    
-  }  
+  } 
+  
+  
+  img {    
+    width: inherit;
+    object-fit: cover;
+    border-radius: 18px 18px 0px 0px;
+  }
 
-  .card-image {
-    grid-area: image;
-    background: url("../../../assets/images/background.jpg");
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    background-size: cover;
+  .unsplashImage{
+    display: inline-flex;
+    height: 400px;
+    width: 100%;    
+    object-fit: fill;
+    border: 1px solid #ff076e;
+    transform: translateZ(-1px);
+    border: rgb(255, 7, 110);
+    border-radius: 16px;
   }
 
   .card-text {

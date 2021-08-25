@@ -11,7 +11,11 @@
 <ion-content >
   <div class="section" *ngFor="let shipSpecs of shipDetailSpecs; let i = index">
     <div class="card">
-      <div class="card-image"></div>
+      <div class="card-image">
+        <div class="unsplashImage">
+          <img [src]="spaceShipImages">
+        </div>
+      </div>
       <div class="card-text">      
         <ion-grid>
           <ion-row class="ship-title"> 
@@ -23,7 +27,7 @@
           <ion-row>
             <ion-col>
               <ul>
-                <p>Starship Class: </p>{{shipSpecs?.starship_class | titlecase}}    
+                <p>Starship Class: </p> {{shipSpecs?.starship_class | titlecase}}    
               </ul>          
             </ion-col>
             <ion-col>
@@ -39,9 +43,13 @@
               </ul>            
             </ion-col>
             <ion-col>
-              <ul>
+              <ul *ngIf="shipSpecs?.cost_in_credits == 'unknown' ">
+                <p>Cost: </p>{{shipSpecs?.cost_in_credits | titlecase }}
+              </ul>
+
+              <ul *ngIf="shipSpecs?.cost_in_credits !==  'unknown' ">
                 <p>Cost: </p>{{shipSpecs?.cost_in_credits | currency:"USD"  }}     
-              </ul> 
+              </ul>
             </ion-col>          
           </ion-row>
           <ion-row>
@@ -67,7 +75,7 @@
               <ul *ngIf="shipSpecs.pilots.length > 0">
                 <p>Pilots: </p>
                 <ul class="pilots card-pilot" *ngFor="let pilot of shipSpecs.pilots; let i = index"
-                (click)="goToPilotDetails(pilot)"
+                (click)="goToPilotDetails(pilot, i)"
                 >
                 {{shipSpecs?.pilots[i].name }}
                 </ul>
@@ -83,15 +91,15 @@
             <ion-col>
               <ul *ngIf="shipSpecs.films.length > 0">
                 <p>Films: </p>
-                <ul class="pilots card-pilot" *ngFor="let films of shipSpecs.films; let i = index"                
+                <ul class="pilots card-pilot" 
+                *ngFor="let films of shipSpecs.films; let i = index"                
                 >
-                <!-- {{films?.films[i].title }} -->
-                {{films | json }}
+                {{shipSpecs?.films[i] }}
                 </ul>
               </ul>
           
-              <ul *ngIf="shipSpecs.pilots.length == 0 ">        
-                <p>Film:</p> No Films
+              <ul *ngIf="shipSpecs.films.length == 0 ">        
+                <p>Films:</p> No Films
               </ul> 
             </ion-col>
           </ion-row> 

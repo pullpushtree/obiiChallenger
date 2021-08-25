@@ -10,16 +10,19 @@ import VanillaTilt from 'vanilla-tilt';
 })
 export class PilotDetailsPage implements OnInit {
   pilotDetailSpecs = [];
+  jediImages: any;
+  id: Promise<any>;
   
 
   constructor(
     private storageLocal : StorageService,     
-    public el: ElementRef
+    public el: ElementRef,
     ) {
     document.body.setAttribute('color-theme', 'dark')
    }
 
   ngOnInit() {    
+    // initializing card swivel motion effect 
     VanillaTilt.init(this.el.nativeElement.lastChild, { 
       glare: true,       
       "max-glare": 0.5,
@@ -30,13 +33,26 @@ export class PilotDetailsPage implements OnInit {
   }
 
   async ionViewWillEnter(){
+    this.id = this.storageLocal.get('selectedPilotId')  
+    
+    // Get selected Pilot object
     await this.storageLocal.get('selectedPilot')     
     .then(res => {
-      if (this.pilotDetailSpecs.length == 0)  {        
-        console.log("pilot details ", res )  
-        this.pilotDetailSpecs.push(res);       
+      if (this.pilotDetailSpecs.length == 0)  {  
+        // Set up object used to display the selected pilot details
+        this.pilotDetailSpecs.push(res['selectedPilot']);       
       }      
     })
-  }
+    
+    //Get Jedi image Array
+    await this.storageLocal.get('jedi')
+    .then(res => {      
+      if (res !== null)  {
+        // Get a random number to select the index image to display  
+        let id = Math.floor(Math.random() * res.length) 
+          this.jediImages = res[id];           
+      }
+    })
 
+  }
 }

@@ -8,17 +8,13 @@
     margin-left: -65px;  
  }
 
-
-
 .section {     
     display: flex;
     flex-direction: row;    
     width: 100%;    
     flex-flow: row wrap;
     align-self: left;
-    justify-content: center; 
-    
-
+    justify-content: center;
 }
 
 .ship-title{
@@ -30,29 +26,37 @@
     padding-left: 0px;
 }
 
+img {    
+  width: inherit;
+  object-fit: cover;
+  border-radius: 18px 18px 0px 0px;
+}
+
+.unsplashImage{
+  display: inline-flex;    
+  height: 400px;
+  width: 100%;    
+  object-fit: fill;
+  border: 1px solid #ff076e;
+  transform: translateZ(-1px);
+  border: rgb(255, 7, 110);
+  border-radius: 16px;
+}
+
 .card {
     display: inline-grid;
     grid-template-columns: 40vw;
     grid-template-rows: 400px auto 80px;
     grid-template-areas: "image" "text" "stats";
-
     border-radius: 18px;
-    //background: rgba(255, 255, 255, 0.055);
-
     background: #17141d;
     box-shadow: -1rem 0 3rem #000;
-
     backdrop-filter: blur(6px);
-    //filter: blur(3px);
     box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
     font-family: 'Poller One';
     text-align: center;
-    
-
     transition: 0.5s ease;
-    //cursor: pointer;
     margin:30px;
-    
   }
 
   .card-image {
@@ -62,7 +66,6 @@
     border-top-right-radius: 15px;
     background-size: cover;
   }
-
 
   .card-text {
     grid-area: text;
@@ -86,7 +89,6 @@
     margin-top:0px;
     font-size:30px;
   }
-
 
   .card-stats {
     grid-area: stats; 
